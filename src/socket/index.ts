@@ -14,7 +14,7 @@ export function initEventHandlers(io: Server<ClientToServerEvents, ServerToClien
         cursors.splice(cursorIndex, 1, { id: socket.id, ...cursor})
       }
 
-      socket.emit("cursor_updates", cursors);
+      io.emit("cursor_updates", cursors);
     });
 
     socket.on("disconnect", () => {
