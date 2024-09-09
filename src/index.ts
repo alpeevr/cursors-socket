@@ -9,11 +9,7 @@ const server = app.listen(env.PORT, () => {
   logger.info(`Server (${NODE_ENV}) running on port http://${HOST}:${PORT}`);
 });
 
-export const io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
-  cors: {
-    origin: "http://localhost:5173",
-  },
-});
+export const io = new Server<ClientToServerEvents, ServerToClientEvents>(server);
 
 initEventHandlers(io);
 
