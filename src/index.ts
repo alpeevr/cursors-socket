@@ -11,8 +11,7 @@ const server = app.listen(env.PORT, () => {
 
 export const io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
   cors: {
-    origin: "https://cursors-client.vercel.app/",
-    methods: ["GET", "POST"],
+    origin: "*",
   },
 });
 
