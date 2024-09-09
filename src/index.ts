@@ -9,7 +9,12 @@ const server = app.listen(env.PORT, () => {
   logger.info(`Server (${NODE_ENV}) running on port http://${HOST}:${PORT}`);
 });
 
-export const io = new Server<ClientToServerEvents, ServerToClientEvents>(server);
+export const io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
+  cors: {
+    origin: "https://cursors-client.vercel.app/",
+    methods: ["GET", "POST"],
+  },
+});
 
 initEventHandlers(io);
 
