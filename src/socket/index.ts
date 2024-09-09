@@ -1,5 +1,6 @@
 import type { ClientToServerEvents, Cursor, ServerToClientEvents } from "@/socket/types";
 import type { Server } from "socket.io";
+import randomcolor from 'randomcolor'
 
 export function initEventHandlers(io: Server<ClientToServerEvents, ServerToClientEvents>) {
   const cursors: Cursor[] = []
@@ -9,9 +10,9 @@ export function initEventHandlers(io: Server<ClientToServerEvents, ServerToClien
       const cursorIndex = cursors.findIndex(c => c.id === socket.id)
       
       if (cursorIndex === -1) {
-        cursors.push({ id: socket.id, ...cursor})
+        cursors.push({ id: socket.id, color: randomcolor(), ...cursor})
       } else {
-        cursors.splice(cursorIndex, 1, { id: socket.id, ...cursor})
+        cursors.splice(cursorIndex, 1, { ...cursors[cursorIndex], ...cursor })
       }
 
       io.emit("cursor_updates", cursors);

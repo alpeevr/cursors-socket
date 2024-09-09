@@ -12,5 +12,5 @@ export type ServerToClientEvents = {
 };
 
 export type ClientToServerEvents = {
-  cursor_receiver: (cursor: Omit<Cursor, 'id'>) => void;
+  cursor_receiver: (cursor: Omit<Cursor, 'id' | 'color'>) => void;
 };
